@@ -1,0 +1,16 @@
+body {
+	background: silver;
+}
+
+.data {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.red {
+	background: red;
+}
+
+.yellow {
+	background: yellow;
+}

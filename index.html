@@ -1,10 +1,67 @@
-<DOCTYPE html>
-<html>
-<head>
-	<title>ParseQ</title>
-</head>
-<body>
+<!DOCTYPE html>
+<html ng-app="parseQ">
+	<head>
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<title>ParseQ</title>
+	</head>
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-</body>
+	<body class="row" ng-controller="MainController">
+
+		<div class="text-center">
+      		<h2>Parse Queue</h2>
+  		</div>
+
+  		<div class="row text-center">
+      		<div class="col-md-8 col-md-offset-2">
+      			<form class="form">
+        			<input type='text' placeholder="Ask your question" class="form-control" ng-model="question"></input>
+        			<hr>
+        			<button type="submit" class="btn btn-block btn-info" ng-click="postData()">Submit</button>
+        			<hr>
+      			</form>
+    		</div>
+  		</div>	
+
+		<div class="messages-container data">
+
+        	<table class="table table-bordered">
+            	<thead>
+              		<th>Questions to be Answered</th>
+              		<th>Answering</th>
+            	</thead>
+            	<tbody>
+              		<tr ng-repeat="question in questions | filter:{status:'red'}">
+                  		<td>{{question.text}}</td>
+                  		<td><button type="button" class="btn btn-default red" ng-click=changeStatus(question)><span class="glyphicon glyphicon-edit"></span></button></td>
+              		</tr>
+            	</tbody>
+        	</table>
+
+      	</div>
+
+      	<div class="messages-container data">
+
+        	<table class="table table-bordered">
+            	<thead>
+              		<th>Questions being Answered</th>
+              		<th>Answered</th>
+            	</thead>
+            	<tbody>
+              		<tr ng-repeat="question in questions | filter:{status:'yellow'}">
+                  		<td>{{question.text}}</td>
+                  		<td><button type="button" class="btn btn-default yellow" ng-click=deleteData(question)><span class="glyphicon glyphicon-remove"></span></button></td>
+              		</tr>
+            	</tbody>
+        	</table>
+
+      	</div>
+
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/MainController.js"></script>
+		<script src="js/parseService.js"></script>
+		<script src="js/defaultHeaders.js"></script>
+	</body>
+
 </html>
